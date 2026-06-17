@@ -19,7 +19,7 @@ class ResearchAgent:
         # Initialize the WatsonX ModelInference
         print("Initializing ResearchAgent with IBM WatsonX ModelInference...")
         self.model = ModelInference(
-            model_id="meta-llama/llama-3-2-90b-vision-instruct", 
+            model_id="meta-llama/llama-4-maverick-17b-128e-instruct-fp8", 
             credentials=credentials,
             project_id="skills-network",
             params={
