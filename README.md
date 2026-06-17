@@ -124,14 +124,8 @@ We welcome contributions from **AI/NLP enthusiasts, researchers, and developers!
 
 ---
 
-## 📜 License  
-
-This project is licensed under a Customed Non-Commercial License – check LICENSE for more details.
-
----
-
 ## 💬 Contact & Support  
 
 📧 **Email:** [hailey@haileyq.com]  
 
-
+Authored by Hailey Quach
