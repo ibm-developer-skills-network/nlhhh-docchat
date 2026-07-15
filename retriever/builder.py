@@ -18,7 +18,7 @@ class RetrieverBuilder:
         }
 
         watsonx_embedding = WatsonxEmbeddings(
-            model_id="ibm/slate-125m-english-rtrvr",
+            model_id="ibm/ibm/granite-embedding-278m-multilingual",
             url="https://us-south.ml.cloud.ibm.com",
             project_id="skills-network",
             params=embed_params
