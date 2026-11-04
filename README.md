@@ -83,10 +83,14 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### **4️⃣ Set Up API Keys**  
-DocChat requires an OpenAI API key for processing. Add it to a `.env` file:
+### **4️⃣ Start LM Studio**  
+DocChat runs against a local model served by [LM Studio](https://lmstudio.ai). Load a chat model and an embedding model, then start the server on port 1234 with "Serve on Local Network" enabled (Developer tab → Settings) so it is reachable at `192.168.1.246:1234`.
+
+Set the model IDs (as shown by `curl http://192.168.1.246:1234/v1/models`) in a `.env` file if they differ from the defaults:
 ```bash
-OPENAI_API_KEY=your-api-key-here
+LMSTUDIO_BASE_URL=http://192.168.1.246:1234/v1
+LLM_MODEL=qwen/qwen3.5-9b
+EMBEDDING_MODEL=text-embedding-nomic-embed-text-v1.5
 ```
 
 

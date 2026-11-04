@@ -1,24 +1,15 @@
-from ibm_watsonx_ai.foundation_models import ModelInference
-from ibm_watsonx_ai import Credentials, APIClient
+from utils.llm import LocalChatModel
 from config.settings import settings
 import re
 import logging
 
 logger = logging.getLogger(__name__)
 
-credentials = Credentials(
-                   url = "https://us-south.ml.cloud.ibm.com",
-                  )
-client = APIClient(credentials)
-
 class RelevanceChecker:
     def __init__(self):
-        # Initialize the WatsonX ModelInference
-        self.model = ModelInference(
-            model_id="ibm/granite-4-h-small",
-            credentials=credentials,
-            project_id="skills-network",
-            params={"temperature": 0, "max_tokens": 10},
+        # Initialize the LM Studio model
+        self.model = LocalChatModel(
+            params={"temperature": 0, "max_tokens": 32768},  # Room for reasoning models to think before the label
         )
 
     def check(self, question: str, retriever, k=3) -> str:

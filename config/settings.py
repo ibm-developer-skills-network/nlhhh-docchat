@@ -3,8 +3,11 @@ from .constants import MAX_FILE_SIZE, MAX_TOTAL_SIZE, ALLOWED_TYPES
 import os
 
 class Settings(BaseSettings):
-    # Required settings
-    OPENAI_API_KEY: str
+    # LM Studio (OpenAI-compatible local server)
+    LMSTUDIO_BASE_URL: str = "http://192.168.1.246:1234/v1"
+    LMSTUDIO_API_KEY: str = "lm-studio"  # LM Studio ignores the key, but the client requires one
+    LLM_MODEL: str = "qwen/qwen3.5-9b"
+    EMBEDDING_MODEL: str = "text-embedding-nomic-embed-text-v1.5"
 
     # Optional settings with defaults
     MAX_FILE_SIZE: int = MAX_FILE_SIZE

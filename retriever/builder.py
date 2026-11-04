@@ -1,7 +1,5 @@
 from langchain_community.vectorstores import Chroma
 from langchain_openai import OpenAIEmbeddings
-from ibm_watsonx_ai.metanames import EmbedTextParamsMetaNames
-from langchain_ibm import WatsonxEmbeddings
 from langchain_community.retrievers import BM25Retriever
 from langchain.retrievers import EnsembleRetriever
 from config.settings import settings
@@ -12,18 +10,12 @@ logger = logging.getLogger(__name__)
 class RetrieverBuilder:
     def __init__(self):
         """Initialize the retriever builder with embeddings."""
-        embed_params = {
-            EmbedTextParamsMetaNames.TRUNCATE_INPUT_TOKENS: 3,
-            EmbedTextParamsMetaNames.RETURN_OPTIONS: {"input_text": True},
-        }
-
-        watsonx_embedding = WatsonxEmbeddings(
-            model_id="ibm/ibm/granite-embedding-278m-multilingual",
-            url="https://us-south.ml.cloud.ibm.com",
-            project_id="skills-network",
-            params=embed_params
+        self.embeddings = OpenAIEmbeddings(
+            model=settings.EMBEDDING_MODEL,
+            base_url=settings.LMSTUDIO_BASE_URL,
+            api_key=settings.LMSTUDIO_API_KEY,
+            check_embedding_ctx_length=False,  # LM Studio expects raw text, not pre-tokenized input
         )
-        self.embeddings = watsonx_embedding
         
     def build_hybrid_retriever(self, docs):
         """Build a hybrid retriever using BM25 and vector-based retrieval."""
